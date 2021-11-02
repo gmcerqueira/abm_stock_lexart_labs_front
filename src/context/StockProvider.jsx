@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 
 const StockContext = createContext();
 
-const CRUD_URL = 'https://crudcrud.com/api/577239c7a0d1445a87232d17665c6e5c/products';
+const CRUD_URL = 'https://crudcrud.com/api/577239c7a0d1445a87232d17665c6e5c/stock';
 
 const StockProvider = ({ children }) => {
-  const [Products, setProducts] = useState([]);
+  const [Stock, setStock] = useState([]);
   const [NewProduct, setNewProduct] = useState({ name: '', validUntil: '' });
+  const [NewClient, setNewClient] = useState({ name: '', email: '' });
   const [Error, setError] = useState(false);
 
-  const getProducts = async () => {
+  const getStock = async () => {
     try {
       const response = await fetch(CRUD_URL, {
         method: 'GET',
@@ -19,7 +20,7 @@ const StockProvider = ({ children }) => {
         },
       }).then((res) => res.json());
 
-      setProducts(response);
+      setStock(response);
     } catch (error) {
       setError(error);
     }
@@ -36,15 +37,25 @@ const StockProvider = ({ children }) => {
     });
   };
 
+  const handleNewClientChange = ({ target }) => {
+    const { name, value } = target;
+
+    setNewClient({
+      ...NewClient,
+      [name]: value,
+    });
+  };
+
   useEffect(() => {
-    getProducts();
+    getStock();
   }, []);
 
   const context = {
-    Products,
+    Stock,
     Error,
     submitProducts,
     handleNewProductChange,
+    handleNewClientChange,
   };
 
   return (
