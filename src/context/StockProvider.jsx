@@ -1,10 +1,16 @@
-import { createContext } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const StockContext = createContext();
 
 const StockProvider = ({ children }) => {
-  const context = {};
+  const [Products, setProducts] = useState([]);
+
+  useEffect(() => {
+    setProducts(['aaaaa', 'bbbbb', 'ccccc']);
+  }, []);
+
+  const context = { Products };
 
   return (
     <StockContext.Provider value={context}>{children}</StockContext.Provider>
