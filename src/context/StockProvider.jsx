@@ -7,6 +7,7 @@ const CRUD_URL = 'https://crudcrud.com/api/577239c7a0d1445a87232d17665c6e5c/prod
 
 const StockProvider = ({ children }) => {
   const [Products, setProducts] = useState([]);
+  const [NewProduct, setNewProduct] = useState({ name: '', validUntil: '' });
   const [Error, setError] = useState(false);
 
   const getProducts = async () => {
@@ -24,10 +25,27 @@ const StockProvider = ({ children }) => {
     }
   };
 
+  const submitProducts = (product) => console.log(product);
+
+  const handleNewProductChange = ({ target }) => {
+    const { name, value } = target;
+
+    setNewProduct({
+      ...NewProduct,
+      [name]: value,
+    });
+  };
+
   useEffect(() => {
     getProducts();
   }, []);
-  const context = { Products, Error };
+
+  const context = {
+    Products,
+    Error,
+    submitProducts,
+    handleNewProductChange,
+  };
 
   return (
     <StockContext.Provider value={context}>{children}</StockContext.Provider>
