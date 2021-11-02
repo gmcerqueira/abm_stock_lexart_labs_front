@@ -7,6 +7,7 @@ const ProductForm = () => {
     submitProducts,
     handleNewProductChange,
     handleNewClientChange,
+    handleNewStockItemChange,
   } = useContext(StockContext);
 
   return (
@@ -19,6 +20,18 @@ const ProductForm = () => {
           name="validUntil"
           type="date"
           onChange={handleNewProductChange}
+        />
+        <FormInput
+          label="Quantity"
+          name="quantity"
+          type="number"
+          onChange={handleNewStockItemChange}
+        />
+        <FormInput
+          label="Price"
+          name="price"
+          type="number"
+          onChange={handleNewStockItemChange}
         />
       </div>
       <div>

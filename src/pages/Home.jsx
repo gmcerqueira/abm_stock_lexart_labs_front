@@ -3,12 +3,12 @@ import ProductForm from '../components/ProductForm';
 import { StockContext } from '../context/StockProvider';
 
 const Home = () => {
-  const { Products } = useContext(StockContext);
+  const { Stock } = useContext(StockContext);
   return (
     <section>
       <ProductForm />
       <ul>
-        {Products.map((product) => (
+        {Stock.map((product) => (
           <li>{product}</li>
         ))}
       </ul>

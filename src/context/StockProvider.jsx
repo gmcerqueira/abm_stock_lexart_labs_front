@@ -9,6 +9,13 @@ const StockProvider = ({ children }) => {
   const [Stock, setStock] = useState([]);
   const [NewProduct, setNewProduct] = useState({ name: '', validUntil: '' });
   const [NewClient, setNewClient] = useState({ name: '', email: '' });
+  const [NewStockItem, setNewStockItem] = useState({
+    quantity: 0,
+    price: 0,
+    client: NewClient,
+    product: NewProduct,
+  });
+
   const [Error, setError] = useState(false);
 
   const getStock = async () => {
@@ -46,9 +53,26 @@ const StockProvider = ({ children }) => {
     });
   };
 
+  const handleNewStockItemChange = ({ target }) => {
+    const { name, value } = target;
+
+    setNewStockItem({
+      ...NewStockItem,
+      [name]: value,
+    });
+  };
+
   useEffect(() => {
     getStock();
   }, []);
+
+  useEffect(() => {
+    setNewStockItem({
+      ...NewStockItem,
+      product: NewProduct,
+      client: NewClient,
+    });
+  }, [NewProduct, NewClient]);
 
   const context = {
     Stock,
@@ -56,6 +80,7 @@ const StockProvider = ({ children }) => {
     submitProducts,
     handleNewProductChange,
     handleNewClientChange,
+    handleNewStockItemChange,
   };
 
   return (
