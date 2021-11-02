@@ -14,6 +14,7 @@ const StockProvider = ({ children }) => {
     price: 0,
     client: NewClient,
     product: NewProduct,
+    active: true,
   });
 
   const [Error, setError] = useState(false);
@@ -33,7 +34,21 @@ const StockProvider = ({ children }) => {
     }
   };
 
-  const submitProducts = (product) => console.log(product);
+  const submitStockItem = async () => {
+    try {
+      const response = await fetch(CRUD_URL, {
+        method: 'POST',
+        body: JSON.stringify(NewStockItem),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => res.json());
+
+      console.log(response);
+    } catch (error) {
+      setError(error);
+    }
+  };
 
   const handleNewProductChange = ({ target }) => {
     const { name, value } = target;
@@ -54,11 +69,12 @@ const StockProvider = ({ children }) => {
   };
 
   const handleNewStockItemChange = ({ target }) => {
-    const { name, value } = target;
+    const { name, value, type } = target;
 
     setNewStockItem({
       ...NewStockItem,
-      [name]: value,
+      [name]:
+        type === 'number' ? parseFloat(parseFloat(value).toFixed(2)) : value,
     });
   };
 
@@ -77,7 +93,7 @@ const StockProvider = ({ children }) => {
   const context = {
     Stock,
     Error,
-    submitProducts,
+    submitStockItem,
     handleNewProductChange,
     handleNewClientChange,
     handleNewStockItemChange,

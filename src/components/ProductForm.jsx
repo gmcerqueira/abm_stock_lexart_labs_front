@@ -4,7 +4,7 @@ import FormInput from './FormInput';
 
 const ProductForm = () => {
   const {
-    submitProducts,
+    submitStockItem,
     handleNewProductChange,
     handleNewClientChange,
     handleNewStockItemChange,
@@ -44,7 +44,7 @@ const ProductForm = () => {
           onChange={handleNewClientChange}
         />
       </div>
-      <button type="button" onClick={submitProducts}>
+      <button type="button" onClick={submitStockItem}>
         Create
       </button>
     </form>

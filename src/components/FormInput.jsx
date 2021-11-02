@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const FormInput = ({
-  label, name, onChange, type = 'text',
+  label, name, onChange, type,
 }) => (
   <div>
     <label htmlFor={name}>
@@ -14,8 +14,12 @@ const FormInput = ({
 FormInput.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+};
+
+FormInput.defaultProps = {
+  type: 'text',
 };
 
 export default FormInput;
