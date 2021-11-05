@@ -39,6 +39,26 @@ const ProductForm = () => {
           value={StockItem.price ? StockItem.price : ''}
           onChange={handleStockItemChange}
         />
+        Active?
+        <label htmlFor="active">
+          Yes
+          <input
+            type="radio"
+            name="active"
+            value
+            onClick={handleStockItemChange}
+          />
+        </label>
+        <label htmlFor="active">
+          No
+          <input
+            type="radio"
+            name="active"
+            value={false}
+            onClick={handleStockItemChange}
+          />
+        </label>
+
       </div>
       <div>
         Client:

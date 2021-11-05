@@ -132,11 +132,13 @@ const StockProvider = ({ children }) => {
 
   const handleStockItemChange = ({ target }) => {
     const { name, value, type } = target;
+    let valueToSet = value;
+    if (type === 'number') valueToSet = parseFloat(parseFloat(value).toFixed(2));
+    if (type === 'radio') valueToSet = value === 'true';
 
     setStockItem({
       ...StockItem,
-      [name]:
-        type === 'number' ? parseFloat(parseFloat(value).toFixed(2)) : value,
+      [name]: valueToSet,
     });
   };
 
