@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unused-vars */
 import { useContext } from 'react';
 import { StockContext } from '../context/StockProvider';
 import FormInput from './FormInput';
@@ -17,7 +15,12 @@ const ProductForm = () => {
     <form>
       <div>
         Product:
-        <FormInput label="Name" name="name" value={StockItem.product.name} onChange={handleProductChange} />
+        <FormInput
+          label="Name"
+          name="name"
+          value={StockItem.product.name}
+          onChange={handleProductChange}
+        />
         <FormInput
           label="Valid until"
           name="validUntil"
@@ -58,7 +61,6 @@ const ProductForm = () => {
             onClick={handleStockItemChange}
           />
         </label>
-
       </div>
       <div>
         Client:
@@ -77,7 +79,9 @@ const ProductForm = () => {
         />
       </div>
       <button type="button" onClick={shouldSubmitOrEdit}>
-        {StockItem._id ? 'Edit' : 'Create'}
+        {Object.prototype.hasOwnProperty.call(StockItem, '_id')
+          ? 'Edit'
+          : 'Create'}
       </button>
       <button type="button" onClick={resetItemInicialState}>
         Clear
