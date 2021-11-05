@@ -42,8 +42,20 @@ const StockProvider = ({ children }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        // mode: 'no-cors',
       }).then((res) => res.json());
+
+      console.log(response);
+      await getStock();
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  const deleteStockItem = async (id) => {
+    try {
+      const response = await fetch(`${CRUD_URL}/${id}`, {
+        method: 'DELETE',
+      });
 
       console.log(response);
       await getStock();
@@ -96,6 +108,7 @@ const StockProvider = ({ children }) => {
     Stock,
     Error,
     submitStockItem,
+    deleteStockItem,
     handleNewProductChange,
     handleNewClientChange,
     handleNewStockItemChange,

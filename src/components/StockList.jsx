@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { StockContext } from '../context/StockProvider';
 
 const StockList = () => {
-  const { Stock } = useContext(StockContext);
+  const { Stock, deleteStockItem } = useContext(StockContext);
 
   return (
     <table>
@@ -18,14 +18,20 @@ const StockList = () => {
         {Stock.map(({
           _id, quantity, price, product,
         }) => (
-          <tr id={_id}>
+          <tr key={_id}>
             <td>{_id}</td>
             <td>{quantity}</td>
             <td>{product.name}</td>
             <td>{price}</td>
             <td>
               <button type="button">SELECT</button>
-              <button type="button">DELETE</button>
+              <button
+                id={_id}
+                type="button"
+                onClick={({ target }) => deleteStockItem(target.id)}
+              >
+                DELETE
+              </button>
             </td>
           </tr>
         ))}
