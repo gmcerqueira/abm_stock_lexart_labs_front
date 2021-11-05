@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { StockContext } from '../context/StockProvider';
 
 const StockList = () => {
-  const { Stock, deleteStockItem } = useContext(StockContext);
+  const { Stock, getStockItem, deleteStockItem } = useContext(StockContext);
 
   return (
     <table>
@@ -24,7 +24,14 @@ const StockList = () => {
             <td>{product.name}</td>
             <td>{price}</td>
             <td>
-              <button type="button">SELECT</button>
+              <button
+                id={_id}
+                type="button"
+                onClick={({ target }) => getStockItem(target.id)}
+              >
+                SELECT
+
+              </button>
               <button
                 id={_id}
                 type="button"
