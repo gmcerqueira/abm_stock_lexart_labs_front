@@ -84,6 +84,26 @@ const StockProvider = ({ children }) => {
     }
   };
 
+  const editStockItem = async () => {
+    const { _id, ...itemToEdit } = NewStockItem;
+
+    console.log(_id, itemToEdit);
+    // try {
+    //   const response = await fetch(`${CRUD_URL}/${_id}`, {
+    //     method: 'POST',
+    //     body: JSON.stringify(itemToEdit),
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   }).then((res) => res.json());
+
+    //   console.log(response);
+    //   await getStock();
+    // } catch (error) {
+    //   setError(error);
+    // }
+  };
+
   const deleteStockItem = async (id) => {
     try {
       const response = await fetch(`${CRUD_URL}/${id}`, {
