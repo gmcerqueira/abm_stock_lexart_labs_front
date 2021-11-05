@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -15,14 +13,16 @@ const StockProvider = ({ children }) => {
   const itemInicialState = {
     quantity: 0,
     price: 0,
-    product: { name: '', validUntil: '' },
-    client: { name: '', email: '' },
-    active: true,
+    product: Product,
+    client: Client,
+    active: false,
   };
   const [StockItem, setStockItem] = useState(itemInicialState);
   const [Error, setError] = useState(false);
 
   const resetItemInicialState = () => {
+    setProduct({ name: '', validUntil: '' });
+    setClient({ name: '', email: '' });
     setStockItem(itemInicialState);
   };
 
@@ -51,6 +51,8 @@ const StockProvider = ({ children }) => {
       }).then((res) => res.json());
       console.log(response);
       setStockItem(response);
+      setProduct(response.product);
+      setClient(response.client);
     } catch (error) {
       setError(error);
     }

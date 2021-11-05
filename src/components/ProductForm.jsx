@@ -49,7 +49,8 @@ const ProductForm = () => {
             type="radio"
             name="active"
             value
-            onClick={handleStockItemChange}
+            checked={StockItem.active}
+            onChange={handleStockItemChange}
           />
         </label>
         <label htmlFor="active">
@@ -58,7 +59,8 @@ const ProductForm = () => {
             type="radio"
             name="active"
             value={false}
-            onClick={handleStockItemChange}
+            checked={!StockItem.active}
+            onChange={handleStockItemChange}
           />
         </label>
       </div>
