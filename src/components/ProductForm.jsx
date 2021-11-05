@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import { useContext } from 'react';
 import { StockContext } from '../context/StockProvider';
@@ -5,38 +6,38 @@ import FormInput from './FormInput';
 
 const ProductForm = () => {
   const {
-    submitStockItem,
-    handleNewProductChange,
-    handleNewClientChange,
-    handleNewStockItemChange,
-    NewStockItem,
+    shouldSubmitOrEdit,
+    handleProductChange,
+    handleClientChange,
+    handleStockItemChange,
+    StockItem,
     resetItemInicialState,
   } = useContext(StockContext);
   return (
     <form>
       <div>
         Product:
-        <FormInput label="Name" name="name" value={NewStockItem.product.name} onChange={handleNewProductChange} />
+        <FormInput label="Name" name="name" value={StockItem.product.name} onChange={handleProductChange} />
         <FormInput
           label="Valid until"
           name="validUntil"
           type="date"
-          value={NewStockItem.product.validUntil}
-          onChange={handleNewProductChange}
+          value={StockItem.product.validUntil}
+          onChange={handleProductChange}
         />
         <FormInput
           label="Quantity"
           name="quantity"
           type="number"
-          value={NewStockItem.quantity ? NewStockItem.quantity : ''}
-          onChange={handleNewStockItemChange}
+          value={StockItem.quantity ? StockItem.quantity : ''}
+          onChange={handleStockItemChange}
         />
         <FormInput
           label="Price"
           name="price"
           type="number"
-          value={NewStockItem.price ? NewStockItem.price : ''}
-          onChange={handleNewStockItemChange}
+          value={StockItem.price ? StockItem.price : ''}
+          onChange={handleStockItemChange}
         />
       </div>
       <div>
@@ -44,19 +45,19 @@ const ProductForm = () => {
         <FormInput
           label="Name"
           name="name"
-          value={NewStockItem.client.name}
-          onChange={handleNewClientChange}
+          value={StockItem.client.name}
+          onChange={handleClientChange}
         />
         <FormInput
           label="Email"
           name="email"
           type="email"
-          value={NewStockItem.client.email}
-          onChange={handleNewClientChange}
+          value={StockItem.client.email}
+          onChange={handleClientChange}
         />
       </div>
-      <button type="button" onClick={submitStockItem}>
-        Create
+      <button type="button" onClick={shouldSubmitOrEdit}>
+        {StockItem._id ? 'Edit' : 'Create'}
       </button>
       <button type="button" onClick={resetItemInicialState}>
         Clear
