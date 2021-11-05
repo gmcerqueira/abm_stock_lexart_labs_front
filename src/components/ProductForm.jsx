@@ -9,9 +9,8 @@ const ProductForm = () => {
     handleNewProductChange,
     handleNewClientChange,
     handleNewStockItemChange,
-    NewProduct,
-    NewClient,
     NewStockItem,
+    resetItemInicialState,
   } = useContext(StockContext);
   return (
     <form>
@@ -58,6 +57,9 @@ const ProductForm = () => {
       </div>
       <button type="button" onClick={submitStockItem}>
         Create
+      </button>
+      <button type="button" onClick={resetItemInicialState}>
+        Clear
       </button>
     </form>
   );

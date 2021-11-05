@@ -30,7 +30,6 @@ const StockList = () => {
                 onClick={({ target }) => getStockItem(target.id)}
               >
                 SELECT
-
               </button>
               <button
                 id={_id}

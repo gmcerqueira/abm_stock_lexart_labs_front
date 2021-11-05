@@ -28,6 +28,10 @@ const StockProvider = ({ children }) => {
   const [NewStockItem, setNewStockItem] = useState(itemInicialState);
   const [Error, setError] = useState(false);
 
+  const resetItemInicialState = () => {
+    setNewStockItem(itemInicialState);
+  };
+
   const getStock = async () => {
     setStock([{ _id: '61855da397069d03e848f98f', ...newItem }]);
     // try {
@@ -136,15 +140,14 @@ const StockProvider = ({ children }) => {
   const context = {
     Stock,
     Error,
+    NewStockItem,
     getStockItem,
     submitStockItem,
     deleteStockItem,
     handleNewProductChange,
     handleNewClientChange,
     handleNewStockItemChange,
-    NewProduct,
-    NewClient,
-    NewStockItem,
+    resetItemInicialState,
   };
 
   return (
