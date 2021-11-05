@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const StockContext = createContext();
 
-const CRUD_URL = 'https://crudcrud.com/api/577239c7a0d1445a87232d17665c6e5c/stock';
+const CRUD_URL = `${process.env.REACT_APP_URL}/stock`;
 
 const StockProvider = ({ children }) => {
   const [Stock, setStock] = useState([]);
@@ -27,7 +27,7 @@ const StockProvider = ({ children }) => {
           'Content-Type': 'application/json',
         },
       }).then((res) => res.json());
-
+      console.log(response);
       setStock(response);
     } catch (error) {
       setError(error);
@@ -42,9 +42,11 @@ const StockProvider = ({ children }) => {
         headers: {
           'Content-Type': 'application/json',
         },
+        // mode: 'no-cors',
       }).then((res) => res.json());
 
       console.log(response);
+      await getStock();
     } catch (error) {
       setError(error);
     }

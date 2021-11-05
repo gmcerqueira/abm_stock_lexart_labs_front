@@ -1,19 +1,13 @@
-import { useContext } from 'react';
+// import { useContext } from 'react';
 import ProductForm from '../components/ProductForm';
-import { StockContext } from '../context/StockProvider';
+import StockList from '../components/StockList';
+// import { StockContext } from '../context/StockProvider';
 
-const Home = () => {
-  const { Stock } = useContext(StockContext);
-  return (
-    <section>
-      <ProductForm />
-      <ul>
-        {Stock.map((product) => (
-          <li>{product}</li>
-        ))}
-      </ul>
-    </section>
-  );
-};
+const Home = () => (
+  <section>
+    <ProductForm />
+    <StockList />
+  </section>
+);
 
 export default Home;
