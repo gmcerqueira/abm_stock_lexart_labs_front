@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -133,10 +134,13 @@ const StockProvider = ({ children }) => {
   };
 
   const handleStockItemChange = ({ target }) => {
-    const { name, value, type } = target;
+    const {
+      name, value, type, checked,
+    } = target;
     let valueToSet = value;
     if (type === 'number') valueToSet = parseFloat(parseFloat(value).toFixed(2));
     if (type === 'radio') valueToSet = value === 'true';
+    if (type === 'checkbox') valueToSet = checked;
 
     setStockItem({
       ...StockItem,

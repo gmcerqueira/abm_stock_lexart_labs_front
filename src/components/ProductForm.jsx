@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Form } from 'react-bootstrap';
 import { StockContext } from '../context/StockProvider';
 import FormInput from './FormInput';
 
@@ -12,7 +13,7 @@ const ProductForm = () => {
     resetItemInicialState,
   } = useContext(StockContext);
   return (
-    <form>
+    <Form>
       <div>
         Product:
         <FormInput
@@ -42,27 +43,14 @@ const ProductForm = () => {
           value={StockItem.price ? StockItem.price : ''}
           onChange={handleStockItemChange}
         />
-        Active?
-        <label htmlFor="active">
-          Yes
-          <input
-            type="radio"
-            name="active"
-            value
-            checked={StockItem.active}
-            onChange={handleStockItemChange}
-          />
-        </label>
-        <label htmlFor="active">
-          No
-          <input
-            type="radio"
-            name="active"
-            value={false}
-            checked={!StockItem.active}
-            onChange={handleStockItemChange}
-          />
-        </label>
+        <Form.Check
+          type="switch"
+          name="active"
+          label="Active?"
+          feedbackTooltip
+          checked={StockItem.active}
+          onChange={handleStockItemChange}
+        />
       </div>
       <div>
         Client:
@@ -88,7 +76,7 @@ const ProductForm = () => {
       <button type="button" onClick={resetItemInicialState}>
         Clear
       </button>
-    </form>
+    </Form>
   );
 };
 

@@ -1,7 +1,7 @@
 import { Switch, Route } from 'react-router';
 import Home from './pages/index';
 
-import './App.css';
+// import './App.css';
 
 function App() {
   return (

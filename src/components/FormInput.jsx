@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
+import { Form } from 'react-bootstrap';
 
 const FormInput = ({
   label, name, onChange, type, value,
 }) => (
-  <div>
-    <label htmlFor={name}>
+  <Form.Group>
+    <Form.Label htmlFor={name}>
       {label}
-      <input type={type} name={name} value={value} onChange={onChange} />
-    </label>
-  </div>
+      <Form.Control type={type} name={name} value={value} onChange={onChange} />
+    </Form.Label>
+  </Form.Group>
 );
 
 FormInput.propTypes = {
