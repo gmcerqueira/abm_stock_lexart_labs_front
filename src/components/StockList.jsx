@@ -1,48 +1,55 @@
 import { useContext } from 'react';
+import { Button, Table } from 'react-bootstrap';
 import { StockContext } from '../context/StockProvider';
 
 const StockList = () => {
   const { Stock, getStockItem, deleteStockItem } = useContext(StockContext);
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>_id</th>
-          <th>Quantity</th>
-          <th>Product Name</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Stock.map(({
-          _id, quantity, price, product,
-        }) => (
-          <tr key={_id}>
-            <td>{_id}</td>
-            <td>{quantity}</td>
-            <td>{product.name}</td>
-            <td>{price}</td>
-            <td>
-              <button
-                id={_id}
-                type="button"
-                onClick={({ target }) => getStockItem(target.id)}
-              >
-                SELECT
-              </button>
-              <button
-                id={_id}
-                type="button"
-                onClick={({ target }) => deleteStockItem(target.id)}
-              >
-                DELETE
-              </button>
-            </td>
+    <section>
+      <h3>Products</h3>
+      <Table striped bordered hover variant="dark" className="w-50">
+        <thead>
+          <tr>
+            <th>_id</th>
+            <th>Quantity</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Actions</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {Stock.map(({
+            _id, quantity, price, product,
+          }) => (
+            <tr key={_id}>
+              <td>{_id}</td>
+              <td>{quantity}</td>
+              <td>{product.name}</td>
+              <td>{price}</td>
+              <td>
+                <Button
+                  id={_id}
+                  onClick={({ target }) => getStockItem(target.id)}
+                  className="me-3"
+                >
+                  SELECT
+                </Button>
+                <Button
+                  id={_id}
+                  type="button"
+                  onClick={({ target }) => deleteStockItem(target.id)}
+                  variant="danger"
+                >
+                  DELETE
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </section>
+
   );
 };
 

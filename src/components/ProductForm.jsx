@@ -16,7 +16,7 @@ const ProductForm = () => {
   const toEdit = Object.prototype.hasOwnProperty.call(StockItem, '_id');
 
   return (
-    <section className="">
+    <section className="w-50 mb-3">
       <h1>New Product</h1>
       <Form className="d-flex ">
         <div className="me-3">
