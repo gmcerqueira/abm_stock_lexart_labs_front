@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { Button, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { StockContext } from '../context/StockProvider';
 
 const StockList = () => {
@@ -28,13 +29,15 @@ const StockList = () => {
               <td>{product.name}</td>
               <td>{price}</td>
               <td>
-                <Button
-                  id={_id}
-                  onClick={({ target }) => getStockItem(target.id)}
-                  className="me-3"
-                >
-                  SELECT
-                </Button>
+                <Link to="/">
+                  <Button
+                    id={_id}
+                    onClick={({ target }) => getStockItem(target.id)}
+                    className="me-3"
+                  >
+                    SELECT
+                  </Button>
+                </Link>
                 <Button
                   id={_id}
                   type="button"

@@ -8,18 +8,12 @@ const CRUD_URL = `${process.env.REACT_APP_URL}/stock`;
 
 const StockProvider = ({ children }) => {
   const [Stock, setStock] = useState([]);
-  const [Product, setProduct] = useState({
-    name: 'New Item',
-    validUntil: '2021-12-04',
-  });
-  const [Client, setClient] = useState({
-    name: 'New Client',
-    email: 'abc@abc.com',
-  });
+  const [Product, setProduct] = useState({ name: '', validUntil: '' });
+  const [Client, setClient] = useState({ name: '', email: '' });
 
   const itemInicialState = {
-    quantity: 100,
-    price: 12.34,
+    quantity: 0,
+    price: 0,
     product: Product,
     client: Client,
     active: false,
@@ -158,10 +152,6 @@ const StockProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getStock();
-  }, []);
-
-  useEffect(() => {
     setStockItem({
       ...StockItem,
       product: Product,
@@ -173,6 +163,7 @@ const StockProvider = ({ children }) => {
     Stock,
     Error,
     StockItem,
+    getStock,
     getStockItem,
     shouldSubmitOrEdit,
     deleteStockItem,

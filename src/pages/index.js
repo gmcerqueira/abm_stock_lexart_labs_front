@@ -1,3 +1,4 @@
 import Home from './Home';
+import Stock from './Stock';
 
-export default Home;
+export { Home, Stock };
