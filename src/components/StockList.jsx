@@ -7,9 +7,9 @@ const StockList = () => {
   const { Stock, getStockItem, deleteStockItem } = useContext(StockContext);
 
   return (
-    <section>
-      <h3>Products</h3>
-      <Table striped bordered hover variant="dark" className="w-50">
+    <section className="text-center mx-auto mt-5 w-75">
+      <h2>Products</h2>
+      <Table striped bordered hover variant="dark">
         <thead>
           <tr>
             <th>_id</th>

@@ -16,9 +16,9 @@ const ProductForm = () => {
   const toEdit = Object.prototype.hasOwnProperty.call(StockItem, '_id');
 
   return (
-    <section className="w-50 mb-3">
-      <h1>New Product</h1>
-      <Form className="d-flex ">
+    <section className="w-50 mx-auto mt-5 d-flex flex-column justify-content-evenly align-items-center">
+      <h2 className="text-center">New Product</h2>
+      <Form className="w-100 d-flex justify-content-center">
         <div className="me-3">
           <h3>Product</h3>
           <FormInput
@@ -75,12 +75,14 @@ const ProductForm = () => {
           />
         </div>
       </Form>
-      <Button onClick={shouldSubmitOrEdit} className="me-3">
-        {toEdit ? 'Update' : 'Submit'}
-      </Button>
-      <Button variant="secondary" onClick={resetItemInicialState}>
-        Clear
-      </Button>
+      <div>
+        <Button onClick={shouldSubmitOrEdit} className="me-3">
+          {toEdit ? 'Update' : 'Submit'}
+        </Button>
+        <Button variant="secondary" onClick={resetItemInicialState}>
+          Clear
+        </Button>
+      </div>
     </section>
   );
 };
