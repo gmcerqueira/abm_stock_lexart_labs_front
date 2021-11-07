@@ -9,3 +9,5 @@
       * Editar item de estoque.
       
 2 - Use o serviço crudcrud.com para gerar todas as interações ABM.
+
+   - OBS: o endpoint fornecido pelo serviço deve ser utilizada como variável de ambiente de nome REACT_APP_URL.
