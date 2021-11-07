@@ -8,12 +8,18 @@ const CRUD_URL = `${process.env.REACT_APP_URL}/stock`;
 
 const StockProvider = ({ children }) => {
   const [Stock, setStock] = useState([]);
-  const [Product, setProduct] = useState({ name: '', validUntil: '' });
-  const [Client, setClient] = useState({ name: '', email: '' });
+  const [Product, setProduct] = useState({
+    name: 'New Item',
+    validUntil: '2021-12-04',
+  });
+  const [Client, setClient] = useState({
+    name: 'New Client',
+    email: 'abc@abc.com',
+  });
 
   const itemInicialState = {
-    quantity: 0,
-    price: 0,
+    quantity: 100,
+    price: 12.34,
     product: Product,
     client: Client,
     active: false,
@@ -85,6 +91,7 @@ const StockProvider = ({ children }) => {
         body: JSON.stringify(itemToEdit),
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
         },
       }).then((res) => res);
 
@@ -138,7 +145,9 @@ const StockProvider = ({ children }) => {
       name, value, type, checked,
     } = target;
     let valueToSet = value;
-    if (type === 'number') valueToSet = parseFloat(parseFloat(value).toFixed(2));
+    if (type === 'number') {
+      valueToSet = parseFloat(parseFloat(value).toFixed(2));
+    }
     if (type === 'radio') valueToSet = value === 'true';
     if (type === 'checkbox') valueToSet = checked;
 
